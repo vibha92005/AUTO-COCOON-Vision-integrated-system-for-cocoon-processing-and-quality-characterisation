@@ -4,7 +4,7 @@ AUTO-COCOON: Convolutional Autoencoder (CAE) for Cocoon Image Augmentation
 
 This script performs data augmentation on cocoon images using a Convolutional Autoencoder (CAE)
 with controlled Gaussian noise and SSIM-based loss. Outputs are sequentially numbered images
-and labels, ready for YOLO training.
+and labels, ready for YOLO training.  
 """
 
 # ------------------------------
