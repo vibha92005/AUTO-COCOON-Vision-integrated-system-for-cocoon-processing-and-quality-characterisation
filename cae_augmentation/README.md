@@ -1,56 +1,79 @@
-# Convolutional Autoencoder (CAE) for Cocoon Image Augmentation
+Convolutional Autoencoder (CAE) for Cocoon Image Augmentation
+Overview
 
-## Overview
-This module implements a **Convolutional Autoencoder (CAE)** for augmenting cocoon images to improve the training dataset for YOLO-based cocoon classification. The CAE enhances images while preserving structural features, adding controlled noise and subtle variations for better model generalization.
+This module implements a Convolutional Autoencoder (CAE)–based image augmentation pipeline to enhance cocoon image datasets for training deep learning models such as YOLOv8.
 
-The system uses a **U-Net style architecture** with weakened skip connections and a **custom combined loss** of Mean Squared Error (MSE) and Structural Similarity Index (SSIM) for visually-safe augmentations.
+The CAE generates visually realistic augmented cocoon images while preserving key structural features. Controlled noise and feature reconstruction improve dataset diversity, reduce overfitting, and enhance generalization of the downstream cocoon quality classification model.
 
-## Features
-- Automated augmentation of cocoon images.  
-- Controlled noise (`noise_std = 0.07`) to maintain visual quality.  
-- SSIM-based loss (`ssim_weight = 0.75`) ensures structural similarity.  
-- Sequentially saved augmented images and corresponding labels.  
-- Compatible with YOLO training workflow.  
-- Visualization of augmented vs original images for verification.
+A U-Net–inspired architecture with weakened skip connections is used, along with a custom composite loss function combining Mean Squared Error (MSE) and Structural Similarity Index (SSIM) to ensure visually safe augmentations.
 
-## Folder Structure
+Key Features
+
+Automated cocoon image augmentation using CAE
+Controlled Gaussian noise (noise_std = 0.07) for realistic variation
+SSIM-weighted loss (ssim_weight = 0.75) to preserve structure
+Generates augmented images and corresponding YOLO-compatible labels
+Sequential image naming to avoid dataset conflicts
+Visual comparison of original and augmented images for validation
+Fully compatible with YOLOv8 training pipeline
+
+Folder Structure
 cae_augmentation/
 │
-├── cae_augmentation.py # Main CAE code
-├── README.md # This file
-├── output/ # Generated images and labels
-│ ├── images/
-│ └── labels/
+├── cae_augmentation.py      # Main CAE implementation
+├── README.md                # Documentation
+├── output/
+│   ├── images/              # Augmented images
+│   └── labels/              # Corresponding YOLO labels
 
 
-## Requirements
-- Python 3.8+  
-- TensorFlow 2.x  
-- OpenCV  
-- NumPy  
-- scikit-image  
-- Matplotlib  
-- scikit-learn  
 
-Install dependencies via:
-      pip install tensorflow opencv-python numpy scikit-image matplotlib scikit-learn
+Requirements
+
+Python 3.8 or higher
+TensorFlow 2.x
+OpenCV
+NumPy
+scikit-image
+Matplotlib
+scikit-learn
+
+Install dependencies
+pip install tensorflow opencv-python numpy scikit-image matplotlib scikit-learn
 
 Usage
+1. (Optional) Mount Google Drive in Google Colab
+from google.colab import drive
+drive.mount('/content/drive')
 
-1.Mount your Google Drive in Colab (optional)
-    from google.colab import drive
-    drive.mount('/content/drive')
+2. Configure dataset paths
 
-2.Set the paths for source images and output directory:
-    base_dir = "/content/tiget"          # Original cocoon images
-    output_dir = "/content/drive/MyDrive/cae_results"
+Inside cae_augmentation.py, set:
 
-3.Run the CAE code:
-    !python cae_augmentation.py
+base_dir = "/content/tiget"                 # Original cocoon images
+output_dir = "/content/drive/MyDrive/cae_results"
 
-Augmented images will be saved in output/images/ and labels in output/labels/ with sequential numbering.
+3. Run the CAE augmentation
+python cae_augmentation.py
+
+Output
+
+Augmented cocoon images saved in:
+output/images/
+Corresponding YOLO-format label files saved in:
+
+output/labels/
+Images are sequentially numbered to avoid overwriting
+Visual comparison plots are generated for verification
 
 Notes
-1.Make sure your original images follow the color_001.png naming format.
-2.The code automatically handles train/validation splits and sequentially numbers augmented images.
-3.Use the augmented dataset for YOLOv8 training.
+Original images should follow a consistent naming format (e.g., color_001.png).
+The code automatically handles dataset splitting and sequential numbering.
+Augmented images can be directly merged into the YOLO training dataset.
+Dataset quality and balance significantly influence final model performance.
+
+Module Status
+CAE Model: Implemented
+Image Augmentation: Implemented
+YOLO Compatibility: Supported
+Physical Sorting / Actuation: Not implemented
