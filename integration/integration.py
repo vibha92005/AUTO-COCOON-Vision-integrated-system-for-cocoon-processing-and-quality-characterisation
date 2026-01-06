@@ -1,87 +1,66 @@
-"""
-AUTO-COCOON: Real-Time Cocoon Sorting Integration
--------------------------------------------------
-This script watches a folder for new cocoon images and classifies them
-as GOOD or BAD using a trained YOLOv8 model. Results are displayed
-and saved with annotations.
-"""
+# Real-Time Cocoon Classification Integration
 
-# ------------------------------
-# Install & Imports
-# ------------------------------
-!pip install -q ultralytics
+## Overview
+This module implements the real-time integration pipeline for cocoon
+classification using a trained YOLOv8 model.
 
-import os
-import time
-from ultralytics import YOLO
-from IPython.display import display, Image
-from google.colab import drive
+The system continuously monitors a Google Drive folder for newly captured
+cocoon images, performs inference, and classifies each cocoon as
+**Good** or **Bad**. Annotated results are saved and displayed for
+verification.
 
-# ------------------------------
-# Mount Google Drive
-# ------------------------------
-drive.mount('/content/drive')
-print("✅ Drive mounted!")
+This module focuses on **vision-based decision output only** and does not
+include physical actuation or sorting hardware.
 
-# ------------------------------
-# Paths
-# ------------------------------
-MODEL_PATH = "/content/drive/MyDrive/best_final_push.pt"
-WATCH_FOLDER = "/content/drive/MyDrive/CocoonImages"
-OUTPUT_FOLDER = "/content/drive/MyDrive/CocoonOutput"
+---
 
-# Create output folder if it doesn't exist
-os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+## Integration Workflow
+1. Image Source  
+   Cocoon images are captured externally and uploaded to a designated
+   Google Drive folder.
 
-# ------------------------------
-# Load YOLO Model
-# ------------------------------
-print(f"📦 Loading YOLO model from: {MODEL_PATH}")
-model = YOLO(MODEL_PATH)
-print("✅ Model loaded successfully!")
+2. Folder Monitoring  
+   The system continuously watches the folder for newly added images.
 
-# ------------------------------
-# Processed files tracker
-# ------------------------------
-processed_files = set()
+3. YOLOv8 Inference  
+   Each new image is passed through a trained YOLOv8 model for cocoon
+   quality classification.
 
-print(f"👀 Watching folder: {WATCH_FOLDER} for new images...")
+4. Result Generation  
+   - Detected cocoons are classified as **Good** or **Bad**
+   - Bounding boxes and labels are drawn on the image
+   - Annotated images are saved for reference
 
-# ------------------------------
-# Main Loop
-# ------------------------------
-try:
-    while True:
-        files = sorted(os.listdir(WATCH_FOLDER))
-        for file_name in files:
-            if file_name.lower().endswith((".jpg", ".jpeg", ".png")) and file_name not in processed_files:
-                full_path = os.path.join(WATCH_FOLDER, file_name)
-                print(f"\n📸 New Image Detected: {file_name}")
+5. Visualization  
+   Annotated outputs are displayed in real time during execution.
 
-                # Run inference
-                results = model(full_path)
-                pred = results[0]
+---
 
-                # Determine GOOD / BAD
-                detected_classes = [model.names[int(box.cls)] for box in pred.boxes]
+## Directory Usage
+- Input Folder  
+  Google Drive directory containing newly uploaded cocoon images.
 
-                if "good" in detected_classes:
-                    print("🟢 RESULT: GOOD COCOON")
-                else:
-                    print("🔴 RESULT: BAD COCOON")
+- Output Folder  
+  Automatically generated folder storing annotated inference results.
 
-                # Save annotated image
-                output_path = os.path.join(OUTPUT_FOLDER, f"annotated_{file_name}")
-                pred.plot(save=True, filename=output_path)
+---
 
-                # Display annotated image in Colab
-                display(Image(filename=output_path))
+## Implementation Highlights
+- Google Drive is used for cloud-based image synchronization.
+- Folder-based polling enables near real-time processing.
+- YOLOv8 (Ultralytics) is used for detection and classification.
+- Processed images are tracked to avoid duplicate inference.
 
-                # Mark as processed
-                processed_files.add(file_name)
+---
 
-        # Wait before checking again
-        time.sleep(2)
+## Limitations
+- Physical sorting using servo motors or conveyors is **not implemented**
+  in the current version.
+- The system outputs classification results only.
 
-except KeyboardInterrupt:
-    print("\n🛑 Stopped watching folder.")
+---
+
+## Future Enhancements
+- Integration with servo motors for automated cocoon sorting.
+- Edge deployment on embedded platforms (Jetson Nano / Raspberry Pi).
+- Web-based dashboard for live monitoring and analytics.
