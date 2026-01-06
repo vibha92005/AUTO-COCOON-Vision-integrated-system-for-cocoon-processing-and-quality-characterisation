@@ -1,13 +1,13 @@
-# YOLOv8 Training for Cocoon Quality Classification
+YOLOv8 Training for Cocoon Quality Classification
 
-## Overview
-This module implements the training, validation, and evaluation of a YOLOv8 object detection model for cocoon quality classification (Good and Bad cocoons). The model is trained using an augmented dataset generated through a Convolutional Autoencoder (CAE) to improve robustness and generalization.
+Overview
 
-The trained YOLO model is later used for real-time cocoon classification and automated sorting.
+This module implements the training, validation, and evaluation of a YOLOv8 object detection model for cocoon quality classification into Good and Bad categories.
+The model is trained using a dataset enhanced through Convolutional Autoencoder (CAE)–based augmentation to improve robustness, generalization, and detection accuracy.
+The trained model is later used for real-time cocoon classification in the integration module.
 
----
+Dataset Structure
 
-## Dataset Structure
 The dataset follows the standard YOLO directory format:
 
 dataset/
@@ -22,74 +22,75 @@ dataset/
 │   └── labels/
 └── data.yaml
 
----
+Annotation Format
 
-## Annotation Format
-Each label file follows YOLO format:
+Each image has a corresponding label file in YOLO format:
 
 <class_id> <x_center> <y_center> <width> <height>
 
-All values are normalized between 0 and 1.
 
----
+All values are normalized between 0 and 1
+Class IDs:
+0 → good
+1 → bad
 
-## data.yaml Configuration
-Example `data.yaml` file:
+data.yaml Configuration
+Example configuration used during training:
 
-path: /content/finally  
-train: train/images  
-val: val/images  
-test: test/images  
-
-nc: 2  
+path: /content/finally
+train: train/images
+val: val/images
+test: test/images
+nc: 2
 names: ['good', 'bad']
 
----
-
-## Requirements
-- Python 3.8 or higher  
-- Ultralytics YOLOv8  
-- OpenCV  
-- NumPy  
+Requirements
+Python 3.8 or higher
+Ultralytics YOLOv8
+OpenCV
+NumPy
 
 Install YOLOv8 using:
 pip install ultralytics
 
----
-
-## Training
-YOLOv8 is fine-tuned using a pretrained model on the cocoon dataset.
+Training Procedure
+YOLOv8 is fine-tuned using pretrained weights on the cocoon dataset.
 
 Example training command:
 yolo detect train model=yolov8n.pt data=data.yaml epochs=50 imgsz=640
 
-The best model weights are automatically saved as:
+
+During training:
+Training loss and metrics are logged automatically
+
+The best-performing weights are saved as:
 runs/detect/train/weights/best.pt
 
----
-
-## Evaluation
+Evaluation
 Model evaluation is performed using:
 yolo detect val model=best.pt data=data.yaml
 
 Evaluation metrics include:
-- Precision  
-- Recall  
-- mAP@0.5  
-- mAP@0.5:0.95  
+Precision
+Recall
+mAP@0.5
+mAP@0.5:0.95
 
----
+Outputs
+Trained model weights (best.pt)
+Training logs and performance plots
+Validation and test metrics
 
-## Output
-- Trained model weights (best.pt)  
-- Training logs and performance plots  
-- Validation and test metrics  
+The integration module uses the trained model for real-time cocoon classification.
 
-The trained model is used in the real-time inference and integration module.
+Notes
+Image and label filenames must match exactly
+Augmented images generated using the CAE module can be directly included in the training dataset
+Dataset quality and class balance significantly impact model performance
+This module focuses only on model training and evaluation
 
----
-
-## Notes
-- Image and label filenames must match exactly.  
-- Augmented images generated using the CAE module can be directly included in the training dataset.  
-- Dataset quality and class balance significantly impact detection performance.
+Module Status
+Training: Implemented
+Evaluation: Implemented
+CAE-Augmented Dataset: Supported
+Physical Sorting: Not implemented
