@@ -1,0 +1,8 @@
+ultralytics
+tensorflow
+opencv-python
+numpy
+scikit-image
+matplotlib
+scikit-learn
+ipython
