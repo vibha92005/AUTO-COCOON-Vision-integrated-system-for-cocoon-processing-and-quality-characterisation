@@ -22,8 +22,8 @@ dataset/
 │   └── labels/
 └── data.yaml
 
-Annotation Format
 
+Annotation Format
 Each image has a corresponding label file in YOLO format:
 
 <class_id> <x_center> <y_center> <width> <height>
