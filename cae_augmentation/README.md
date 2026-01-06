@@ -1,4 +1,4 @@
-Convolutional Autoencoder (CAE) for Cocoon Image Augmentation
+**Convolutional Autoencoder (CAE) for Cocoon Image Augmentation**
 Overview
 
 This module implements a Convolutional Autoencoder (CAE)–based image augmentation pipeline to enhance cocoon image datasets for training deep learning models such as YOLOv8.
