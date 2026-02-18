@@ -92,7 +92,7 @@ AUTO-COCOON/
 ---
 
 ## Author
-**Vibha I S**  
+**Vibha I S** & **Ashitha M**
 B.E. Electronics and Communication Engineering  
 
 ---
