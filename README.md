@@ -1,6 +1,6 @@
 # AUTO-COCOON: Vision-Integrated System for Cocoon Processing and Quality Characterisation
 
-AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon quality assessment and sorting. The project combines image enhancement using a Convolutional Autoencoder (CAE), deep learning-based object detection with YOLOv8, and a real-time inference pipeline to classify silk cocoons as **Good** or **Bad**. The system is designed to reduce manual inspection, improve classification consistency, and support scalable cocoon processing for sericulture applications.
+AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon quality assessment and sorting. The project integrates image enhancement using a Convolutional Autoencoder (CAE), YOLOv8-based object detection, and a real-time inference pipeline to classify silk cocoons as **Good** or **Bad**. The system aims to reduce manual inspection, improve classification consistency, and support scalable cocoon processing for sericulture applications.
 
 ---
 
@@ -9,7 +9,7 @@ AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon qu
 <table>
 <tr>
 <td align="center"><b>System Architecture</b></td>
-<td align="center"><b>Prototype Setup</b></td>
+<td align="center"><b>Experimental Setup</b></td>
 </tr>
 
 <tr>
@@ -19,12 +19,12 @@ AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon qu
 
 <tr>
 <td align="center"><b>CAE Augmentation</b></td>
-<td align="center"><b>YOLOv8 Detection</b></td>
+<td align="center"><b>Model Development Pipeline</b></td>
 </tr>
 
 <tr>
 <td><img src="images/cae_before_after.png" width="430"></td>
-<td><img src="images/yolo_detection_good.png" width="430"></td>
+<td><img src="images/model_development_pipeline.png" width="430"></td>
 </tr>
 
 </table>
@@ -33,28 +33,26 @@ AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon qu
 
 # 🚀 Project Highlights
 
-- AI-powered Cocoon Quality Assessment
+- Automated Cocoon Quality Assessment using Computer Vision
 - YOLOv8-based Object Detection and Classification
-- CAE-based Dataset Augmentation
+- Convolutional Autoencoder (CAE) for Image Augmentation
 - Real-Time Inference Pipeline
-- Modular Project Architecture
-- Designed for Automated Cocoon Sorting
+- Modular AI System Design
+- Scalable Architecture for Automated Cocoon Sorting
 
 ---
 
 # 📖 Overview
 
-Traditional cocoon quality inspection relies on manual observation, making it time-consuming and prone to inconsistencies. AUTO-COCOON addresses this challenge by integrating computer vision and deep learning techniques into an automated inspection workflow.
+Silk cocoon quality assessment is traditionally performed through manual inspection, which is labor-intensive and prone to inconsistencies. AUTO-COCOON addresses this challenge by integrating computer vision and deep learning techniques into an automated inspection workflow.
 
-The project uses a Convolutional Autoencoder (CAE) to generate high-quality augmented images, improving dataset diversity and model generalization. The enhanced dataset is then used to train a YOLOv8 model capable of detecting and classifying cocoon quality. The trained model is integrated into a real-time inference pipeline, making the system suitable for future deployment in automated cocoon sorting environments.
+A Convolutional Autoencoder (CAE) is used to generate high-quality augmented images, improving dataset diversity and model generalization. The enhanced dataset is then used to train a YOLOv8 model capable of detecting and classifying cocoon quality. The trained model is integrated into a real-time inference pipeline for automated cocoon inspection.
 
 ---
 
 # 🏗 System Architecture
 
-The complete system consists of hardware modules for cocoon transportation, image acquisition, AI-based quality assessment, and automated sorting.
-
-> **Replace with your system architecture diagram**
+The system consists of a loader module, deflosser module, conveyor mechanism, image acquisition unit, YOLOv8-based quality assessment, and a sorting mechanism for separating good and bad cocoons.
 
 <p align="center">
 <img src="images/system_architecture.png" width="900">
@@ -66,8 +64,6 @@ The complete system consists of hardware modules for cocoon transportation, imag
 
 The AI model was developed using the following workflow.
 
-> **Replace with your model development pipeline**
-
 <p align="center">
 <img src="images/model_development_pipeline.png" width="350">
 </p>
@@ -76,7 +72,7 @@ The AI model was developed using the following workflow.
 
 # 🔬 Experimental Setup
 
-The experimental prototype integrates hardware and software components required for automated cocoon inspection.
+The prototype integrates hardware and software components required for automated cocoon inspection.
 
 ### Hardware Components
 
@@ -84,37 +80,31 @@ The experimental prototype integrates hardware and software components required 
 - Deflosser Module
 - Conveyor Module
 - Camera Module
-- LED Illumination Unit
+- LED Illumination
 - AI Processing Unit
 - Sorting Mechanism
 
-> **Replace with setup image**
-
 <p align="center">
-<img src="images/setup.png" width="750">
+<img src="images/setup.jpeg" width="750">
 </p>
 
 ---
 
 # 📂 Dataset
 
-The dataset consists of silk cocoon images captured under controlled lighting conditions using a vision acquisition setup. Images were manually annotated and categorized into **Good** and **Bad** quality cocoons for model training and evaluation.
-
-> **Replace with dataset sample**
+The dataset consists of cocoon images captured under controlled lighting conditions. Images were annotated into **Good** and **Bad** quality classes before training.
 
 <p align="center">
-<img src="images/raw_dataset.png" width="750">
+<img src="images/raw_captured_img.png" width="750">
 </p>
 
 ---
 
-# 🖼 Image Enhancement using CAE
+# 🖼 Image Enhancement using Convolutional Autoencoder (CAE)
 
-To improve dataset diversity while preserving structural characteristics of the cocoons, a Convolutional Autoencoder (CAE) was used for image augmentation.
+To improve dataset diversity while preserving important cocoon characteristics, a Convolutional Autoencoder (CAE) was employed to generate augmented training samples.
 
 ### Original vs CAE-Augmented Images
-
-> **Replace with before vs after augmentation image**
 
 <p align="center">
 <img src="images/cae_before_after.png" width="800">
@@ -124,34 +114,44 @@ To improve dataset diversity while preserving structural characteristics of the 
 
 # 🎯 YOLOv8 Detection Results
 
-The augmented dataset was used to train a YOLOv8 object detection model capable of identifying and classifying cocoon quality in real time.
+The trained YOLOv8 model performs real-time cocoon detection and quality classification.
 
-> **Replace with YOLO detection results**
+### Good Cocoon Detection
 
 <p align="center">
-<img src="images/yolo_detection.png" width="750">
+<img src="images/yolo_detection_good.png" width="700">
+</p>
+
+### Bad Cocoon Detection
+
+<p align="center">
+<img src="images/yolo_detection_bad.png" width="700">
 </p>
 
 ---
 
-# ⚙ Real-Time Inference Workflow
+# 📊 Performance Metrics
 
-The deployed system follows the workflow below:
-
-1. Monitor incoming cocoon images
-2. Load the captured image
-3. Perform image preprocessing
-4. Run inference using the trained YOLOv8 model
-5. Detect cocoon objects
-6. Classify cocoons as **Good** or **Bad**
-7. Display prediction
-8. Send output for automated sorting
-
-> *(Optional: Insert your inference flowchart here.)*
+The model achieved strong performance for cocoon quality classification.
 
 <p align="center">
-<img src="images/inference_workflow.png" width="350">
+<img src="images/performance_metric.png" width="700">
 </p>
+
+---
+
+# ⚙ Project Workflow
+
+1. Capture cocoon images
+2. Annotate the dataset
+3. Perform image preprocessing
+4. Generate augmented images using CAE
+5. Train the YOLOv8 model
+6. Evaluate model performance
+7. Deploy the trained model
+8. Perform real-time cocoon detection
+9. Classify cocoon quality as Good or Bad
+10. Send output to the sorting mechanism
 
 ---
 
@@ -175,41 +175,20 @@ AUTO-COCOON
 ├── images/
 │   ├── system_architecture.png
 │   ├── model_development_pipeline.png
-│   ├── setup.png
-│   ├── raw_dataset.png
+│   ├── setup.jpeg
+│   ├── raw_captured_img.png
 │   ├── cae_before_after.png
-│   ├── yolo_detection.png
-│   └── inference_workflow.png
+│   ├── yolo_detection_good.png
+│   ├── yolo_detection_bad.png
+│   └── performance_metric.png
 │
 ├── cae_augmentation/
-│   ├── cae_augmentation.py
-│   └── README.md
-│
 ├── yolo_training/
-│   ├── train.py
-│   └── README.md
-│
 ├── integration/
-│   ├── integration.py
-│   └── README.md
-│
 ├── requirements.txt
 ├── LICENSE
 └── README.md
 ```
-
----
-
-# 📊 Results
-
-| Metric | Value |
-|---------|--------|
-| Precision | 91.7% |
-| Recall | 97.4% |
-| mAP@50 | 95.8% |
-| SSIM (CAE) | 0.99 |
-
-> Replace these values with your final experimental results if they differ.
 
 ---
 
@@ -219,9 +198,8 @@ AUTO-COCOON
 - Servo motor integration
 - Edge deployment using Jetson Nano
 - Raspberry Pi implementation
-- Multi-grade cocoon quality classification
-- Web dashboard for monitoring and analytics
-- Cloud-based deployment
+- Multi-grade cocoon quality assessment
+- Cloud-based monitoring dashboard
 
 ---
 
@@ -237,29 +215,15 @@ pip install -r requirements.txt
 
 ---
 
-# 👩‍💻 My Contributions
+# 👩‍💻 Contributors
 
-- Designed and implemented the computer vision pipeline.
-- Developed the CAE-based image augmentation workflow.
-- Trained and evaluated the YOLOv8 object detection model.
-- Integrated the real-time inference pipeline.
-- Performed dataset preprocessing and annotation.
-- Assisted in system integration for automated cocoon quality assessment.
+- **Vibha I S**
+- **Ashitha M**
 
-> *Modify this section to accurately reflect your individual contributions if this was a team project.*
-
----
-
-# 👥 Authors
-
-**Vibha I S**  
-B.E. Electronics and Communication Engineering
-
-**Ashitha M**  
-B.E. Electronics and Communication Engineering
+Department of Electronics and Communication Engineering
 
 ---
 
 # 📄 License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License.
