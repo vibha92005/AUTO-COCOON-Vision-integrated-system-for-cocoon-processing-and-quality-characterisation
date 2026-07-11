@@ -14,7 +14,7 @@ AUTO-COCOON is an AI-powered computer vision system for automated silk cocoon qu
 
 <tr>
 <td><img src="images/system_architecture.png" width="430"></td>
-<td><img src="images/setup.png" width="430"></td>
+<td><img src="images/setup.jpeg" width="430"></td>
 </tr>
 
 <tr>
