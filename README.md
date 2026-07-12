@@ -222,7 +222,8 @@ pip install -r requirements.txt
 - Cloud-based monitoring and analytics
 
 ---
-
+PAPER LINK : https://doi.org/10.1051/itmconf/20268701006
+----
 # Contributors
 
 **Vibha I S**
